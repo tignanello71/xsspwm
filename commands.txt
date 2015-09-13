@@ -1,0 +1,5 @@
+curl http://NOMEAPP-NOMEACCOUNT.rhcloud.com/partite				
+curl http://NOMEAPP-NOMEACCOUNT.rhcloud.com/partite/12345 (usare un id reale)
+curl -X DELETE http://NOMEAPP-NOMEACCOUNT.rhcloud.com/partite/12345 (usare un id reale)
+curl -X POST -H 'Content-Type: application/json' -d '{"casa": "NOMEOSTE", "ospite": "NOMEOSPITE"}' http://NOMEAPP-NOMEACCOUNT.rhcloud.com/partite
+curl -X POST -H 'Content-Type: application/json' -d '{"casa": "NOMEOSTE", "ospite": "NOMEOSPITE"}' http://NOMEAPP-NOMEACCOUNT.rhcloud.com/partite/12345 (usare un id reale)
