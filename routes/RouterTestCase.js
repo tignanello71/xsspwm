@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var mongoose = require('mongoose');
-var TestCase = require('../models/xsspwm.js');
+var TestCase = require('../models/xsspwm');
 
 /* GET /games listing. */
 router.get('/', function(req, res, next) {
@@ -16,7 +16,9 @@ router.get('/', function(req, res, next) {
 /* POST /games */
 router.post('/', function(req, res, next) {
   TestCase.create(req.body, function (err, post) {
-    if (err) return next(err);
+    console.log(req.body);
+    if (err) { console.log(err); return next(err)};
+console.log(post);
     res.json(post);
   });
 });
