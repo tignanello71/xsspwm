@@ -24,8 +24,21 @@ console.log(post);
 });
 
 /* GET /games/id */
-router.get('/:id', function(req, res, next) {
+router.get('/id=:id', function(req, res, next) {
+
+console.log("con id"); console.log(req.params);
+
   TestCase.findById(req.params.id, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+/* GET /games/id */
+router.get('/ID_TestCase=:ID_TestCase', function(req, res, next) {
+
+console.log("con ID_TestCase"); console.log(req.params);
+
+  TestCase.find(req.params, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
@@ -33,6 +46,8 @@ router.get('/:id', function(req, res, next) {
 
 /* PUT /games/:id */
 router.put('/:id', function(req, res, next) {
+
+	console.log(req.params);
   TestCase.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
