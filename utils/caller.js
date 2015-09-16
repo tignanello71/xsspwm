@@ -28,8 +28,9 @@ exports.getHTML = function (urlsite){
 	    
            console.log("- inizio html -");
 	   //console.log(str);
-		return str;
+		
 	   console.log("- fine html -");
+           return str;
 	   
 	  });
 	}

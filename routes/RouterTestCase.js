@@ -108,7 +108,7 @@ router.get('/getHTML/ID_TestCase=:ID_TestCase', function(req, res, next) {
 
 
 /* PUT /games/:id */
-router.put('/id=:id', function(req, res, next) {
+router.put('/id=ex:id', function(req, res, next) {
 
 	console.log(req.params);
   TestCase.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
