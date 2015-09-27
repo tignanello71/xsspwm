@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var http = require('http');
+var util = require('util');
+var request = require('request');
 
 var mongoose = require('mongoose');
 var TestCase = require('../models/xsspwm.js');
@@ -57,12 +59,14 @@ router.get('/getHTML/url=:url', function(req, res, next) {
     var str = "";
 
     console.log ("elaboro sito " + req.params.url );
+	
+    console.log (util.inspect(req));
 	        
     var risorsa = "";
     var options = {
-	  host: req.params.url
-,
-	  path: risorsa
+	  url: req.params.url,
+	  path: risorsa,
+	query:req.query
     };
 
     callback = function(response) {
@@ -85,6 +89,48 @@ router.get('/getHTML/url=:url', function(req, res, next) {
 
      http.request(req.params.url, callback).end();
 });
+
+/* POST /getHTML/id= value */
+router.post('/getHTML/url=:url', function(req, res, next) {
+
+    console.log("post HTML con id"); 
+    //console.log(util.inspect(req));
+
+
+    var str = "";
+
+    console.log ("elaboro sito " + req.params.url );
+	        
+     
+    var options = {
+	  url: req.params.url,
+          method:"POST",
+          //json:true,
+          body:req.body
+	      };
+
+    
+
+    callback2 = function(err,response,body) {
+  
+
+	console.log("dentro callback2");
+	console.log(JSON.stringify(response));
+	res.send(body);
+
+    }
+    
+     var parm={
+	url: req.params.url,
+	form: req.body
+     }
+     
+     console.log(JSON.stringify(parm));
+     request.post(parm,callback2);
+
+});
+
+
 
 	
 /* GET /getHTML/ID_TestCase= value */
